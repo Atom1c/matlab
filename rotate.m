@@ -1,4 +1,4 @@
-filename = 'im.jpg'
+filename = 'example2.jpg'
 I = imread(filename);
 [im loc]=rot(I);
 imshow(im);
