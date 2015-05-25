@@ -1,8 +1,8 @@
-function [im ang] = rot( I )
+function [im loc] = rot( I )
 
 level=graythresh(I)-0.25
 BW=im2bw(I,level);
-BW = edge(BW, 'prewitt',level);
+BW = edge(BW, 'canny',level);
 [H,theta,rho] = hough(BW);
 P = houghpeaks(H,5,'Threshold', 0.5*max(H(:)));
 x = theta(P(:,2)); 
@@ -67,8 +67,9 @@ figure(2),imshow(i1)
 figure(3),imshow(i2)
 im=i1
 if lines(imax).point1(2)==lines(imax).point2(2)
-ang=[lines(imax1).point1 lines(imax1).point2]
+loc=[lines(imax1).point1 lines(imax1).point2]
 else
-    ang=[lines(imax).point1 lines(imax).point2]
+    loc=[lines(imax).point1 lines(imax).point2]
 end
 end
+
